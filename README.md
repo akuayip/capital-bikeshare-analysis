@@ -1,5 +1,5 @@
 # Capital Bikeshare Dashboard ✨
-
+![Capital Bikeshare](capitalbike.png)
 ## Setup Environment - Anaconda
 ```
 conda create --name main-ds python=3.9
