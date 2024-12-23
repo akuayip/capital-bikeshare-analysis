@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
-# from babel.numbers import format_currency
 
 sns.set(style='dark')
 
@@ -138,9 +137,7 @@ bike_rentals_by_year_df = create_bike_rentals_by_year(main_df)
 data_2011, data_2012 = create_yearly_perfome_rentals(main_df)
 clustering_summary = create_cluster_rentals(main_df)
 
-
-# plot number of daily orders (2021)
-
+# CAPITAL BIKESHARE DASHBOARD
 st.header('Capital Bikeshare Dashboard :sparkles:')
 with st.expander("Abuout us"):
     st.write(
@@ -163,8 +160,6 @@ with col1:
 with col2:
     total_rent = day_df.cnt.sum()
     st.metric("Total rent bikes", value=total_rent)
-    
-    
 
 # visual for bike by_season
 st.subheader('The Most Popular Season for Bike Rentals')
@@ -201,10 +196,10 @@ with st.expander("See Explanation"):
         """
     )
 
+
 # Demografi
 # visual for bike by_weathersi
 st.subheader('Bike Rental Demographics')
-
 col1, col2 = st.columns(2)
 
 with col1:
@@ -248,7 +243,6 @@ for bar in bars:
     plt.text(bar.get_x() + bar.get_width() / 2, height, f'{int(height)}', ha='center', va='bottom', fontsize=10)
 plt.tight_layout()
 st.pyplot(plt)
-
 
 with st.expander("See Explanation"):
     st.markdown(
@@ -295,8 +289,7 @@ with st.expander("See Explanation"):
         - Namun, penyewaan menurun drastis selama musim dingin, menunjukkan bahwa cuaca memiliki dampak besar terhadap performa penyewaan.
         """
     )
-
-
+    
 #clustering
 st.subheader('Bie Rtal Ptterns')
 plt.figure(figsize=(12, 6))
