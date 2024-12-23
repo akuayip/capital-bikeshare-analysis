@@ -117,7 +117,7 @@ max_date = all_df["dteday"].max()
 
 with st.sidebar:
     # Menambahkan logo perusahaan
-    st.image("https://github.com/dicodingacademy/assets/raw/main/logo.png")
+    st.image("capitalbike.png")
     
     # Mengambil start_date & end_date dari date_input
     start_date, end_date = st.date_input(
@@ -138,6 +138,7 @@ data_2011, data_2012 = create_yearly_perfome_rentals(main_df)
 clustering_summary = create_cluster_rentals(main_df)
 
 # CAPITAL BIKESHARE DASHBOARD
+st.image("capitalbikeshare.jpg")
 st.header('Capital Bikeshare Dashboard :sparkles:')
 with st.expander("Abuout us"):
     st.write(
