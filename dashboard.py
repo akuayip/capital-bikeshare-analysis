@@ -44,7 +44,7 @@ def create_bike_rentals_by_weekday(df):
     5: "Saturday",
     6: "Sunday"
     }
-    by_weekday_df = hour_df.groupby(by="weekday")['cnt'].sum().sort_values(ascending=False).reset_index()
+    by_weekday_df = all_df.groupby(by="weekday")['cnt'].sum().sort_values(ascending=False).reset_index()
     by_weekday_df['weekday'] = by_weekday_df['weekday'].map(weekday_mapping)
     by_weekday_df.rename(columns={
         "cnt": "rental_count"
@@ -71,7 +71,7 @@ def create_yearly_perfome_rentals(df):
     year_all_df['year'] = year_all_df['dteday'].dt.year
     year_all_df['month'] = year_all_df['dteday'].dt.strftime('%B')
     year_all_df.rename(columns={
-        "cnt": "total_rental"  # Menghitung total penyewaan
+        "cnt": "total_rental"  
     }, inplace=True)
 
     data_2011 = year_all_df[year_all_df['year'] == 2011]
@@ -100,8 +100,6 @@ def create_cluster_rentals(df):
     return clustering_summary
 
 # Load cleaned data
-day_df = pd.read_csv("day_data.csv")
-hour_df = pd.read_csv("hour_data.csv")
 all_df = pd.read_csv("all_data.csv")
 
 datetime_columns = ["dteday"]
@@ -126,8 +124,8 @@ with st.sidebar:
         value=[min_date, max_date]
     )
 
-main_df = day_df[(day_df["dteday"] >= str(start_date)) & 
-                (day_df["dteday"] <= str(end_date))]
+main_df = all_df[(all_df["dteday"] >= str(start_date)) & 
+                (all_df["dteday"] <= str(end_date))]
 
 # st.dataframe(main_df)
 bike_rentals_by_season_df = create_bike_rentals_by_season(main_df)
@@ -155,11 +153,11 @@ st.subheader('Records 👇🏻')
 col1, col2 = st.columns(2)
 
 with col1:
-    total_record = day_df.instant.nunique()
+    total_record = all_df.instant.nunique()
     st.metric("Total Record", value=total_record)
 
 with col2:
-    total_rent = day_df.cnt.sum()
+    total_rent = all_df.cnt.sum()
     st.metric("Total rent bikes", value=total_rent)
 
 # visual for bike by_season
